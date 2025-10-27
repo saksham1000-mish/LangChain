@@ -60,4 +60,11 @@ Components:
 
       -Temperature: Controls the randomness of a model, affecting the creativness of the model. ranges from 0 - 1.5+.
       0 is deterministic. Higher is random nd creative.
+- open source models can be downloaded and then easily used on confidential docs, can be downloaded from huggingface
+      - also HF inference api can be used (free to some limit.)
+      - high hardware requirements
+      - setup complexity when downloaded
+      - not fine tuned enough
+      - limited mulitmodal capabilities 
+
 
