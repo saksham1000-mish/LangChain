@@ -35,7 +35,7 @@ Components:
       - build stages and the output of stage is input of the other
       - can build quite complex pipelines, parallel, conditional, etc
   
-  -Indexes
+  -Indexes~
       - connect app to external KBs. 
       - Doc Loader, Text Splitter, VectorDBs, retrievers
 
@@ -53,4 +53,11 @@ Components:
 - 2 types: Language (LLMs, Chat models) and Embedding Models
       -LLM: text input, text output
       -Embedding: text input, vector output
-      
+
+- LLMs are general purpose: text generation, summarization, etc. Support for these is getting obsolete
+
+- Chat models: Used for conversational tasks. Main foucs. Fine tuned on huge data and fine-tuned on chat datasets, convo history is maintained, assign roles to the models.  
+
+      -Temperature: Controls the randomness of a model, affecting the creativness of the model. ranges from 0 - 1.5+.
+      0 is deterministic. Higher is random nd creative.
+
