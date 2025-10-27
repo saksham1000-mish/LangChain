@@ -1,0 +1,56 @@
+Open source framework to build apps powered by LLMs
+
+semantic search:
+ - split the whole text into chunks (text splitter)
+ - embed context text to vectors, and embed the query too
+ - store them in VetorDB
+ - find the similarity of query vector with text vectors to give the relevant context
+
+langchain benefits
+ - chain concept, pipeline is easier to build
+ - model agnostic development (can change components easily, not the whole code )
+ - complete ecosystem (every component has high variety)
+ - in convo memory and state is maintained
+
+Alternatives:
+ - Llamaindex
+ - Haystack 
+
+Components:
+  - Models: 
+      - should have NLU and context aware text-gen
+      - trained on the whole internet, and billions of params
+      - LLms stored on their server and public uses APIs so that everyone can use
+      - Langchain gives standardization as we can use any LLM api
+      - there are 2 models in langchain(LLms(text as input, text as output), embedding(text as input, vectors as output))
+
+  - Prompts
+      - input to LLMs
+      - very sensitive to these instructions
+      - with langchain we can create dynamic prompts, role based prompts(user, system)
+      - few shot prompts - give examples to the LLM to explain it how to give answer
+
+  - Chains
+      - build pipelines in Langchain
+      - build stages and the output of stage is input of the other
+      - can build quite complex pipelines, parallel, conditional, etc
+  
+  -Indexes
+      - connect app to external KBs. 
+      - Doc Loader, Text Splitter, VectorDBs, retrievers
+
+  - Memory
+      - LLM api calls are stateless
+      - Langchain stores convos to keep context
+      - BufferMemory, BufferWindowMemory, SummarizerBasedMemory, CustomMemory
+
+  - Agents
+      - can create AI agents easily here
+
+** Models **
+
+- Interface to interact with different models
+- 2 types: Language (LLMs, Chat models) and Embedding Models
+      -LLM: text input, text output
+      -Embedding: text input, vector output
+      
