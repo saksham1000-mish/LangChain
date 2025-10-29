@@ -76,3 +76,8 @@ StructuredOutput - models returning json format rather than free text.
         -json_schema: when we are working with multiple languages, as json is unoiversal, it is quite beneficial
 
 
+Output Parsers - convert raw LLM outputs into structured output formats like json, csv, pydantic models. they ensure consistency, validation in apps
+    -strOutputParser: simplest one, returns plain string
+    -jsonOutputpasrser: forces LLM to give ans in json, but u cannot enforce a schema, only through instructions to LLMs not via code.
+    -StructuredOutputParser: extract structured JSON data from LLM based on a predefined field schema, but data validation is not possible. 
+    -PydanticOutputParser
