@@ -65,6 +65,12 @@ Components:
       - high hardware requirements
       - setup complexity when downloaded
       - not fine tuned enough
-      - limited mulitmodal capabilities 
+      - limited mulitmodal capabilities
+
+StructuredOutput - models returning json format rather than free text.
+    - eg. data extraction, API building, Agents
+    - langchain has with_structured_output and tell the data_fromat functionality for some LLMs which support this.
+    - json_schema is specified by 3 ways: TypedDict, Pydantic, json_schema
+        - TypedDict: define a dict in python and it follows a specific structure defined beforehand, but even if we specifiy the datatype in the key, we can still change it afterwards, there is no rule. {from typing import TypedDict}
 
 
