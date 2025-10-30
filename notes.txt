@@ -81,3 +81,10 @@ Output Parsers - convert raw LLM outputs into structured output formats like jso
     -jsonOutputpasrser: forces LLM to give ans in json, but u cannot enforce a schema, only through instructions to LLMs not via code.
     -StructuredOutputParser: extract structured JSON data from LLM based on a predefined field schema, but data validation is not possible. 
     -PydanticOutputParser
+
+Chains: Multiple steps are involved, basic is Prompt --> LLM --> Output
+    - one way is to manually do it
+    - using chains we can create pipelines quite easily
+    - we can make sequential, parallel, conditional chains
+    
+
