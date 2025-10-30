@@ -86,5 +86,23 @@ Chains: Multiple steps are involved, basic is Prompt --> LLM --> Output
     - one way is to manually do it
     - using chains we can create pipelines quite easily
     - we can make sequential, parallel, conditional chains
-    
 
+Runnables: We need to know runnables to understand chains
+    - every llm app has a prompt and sending to LLM, and devs used to do this manually, so langchain made a chains to do this automatically in a single function call. So for different complex redundant tasks across apps they created chains for them.
+    - But they created too many chains for each usecases, coz of that their codebase got bigger with different keywords, and learning curve for AI enggs got steep.
+    - So Runnables are like unit of work, give them input, they process and give output
+        - each runnable follows same methods eg. invoke, batch, stream
+        - easily connect runnables and it becomes a bigger runnable
+        - they are like LEGO blocks 
+
+        - There are 2 types of runnables:
+            - task specific - langchain comps which got converted to runnables to be used in pipelines, eg. PromptTemplate, Retriever, etc
+            - Runnable Primitive: fundamental building blocks defining how different runnables interact.
+
+    -RunnableSequence: sequential chain of runnables passing output of one to another as input
+    - RunnableParallel: Parallel chains, each runnable receives same input, processes it independently, producing a dict of outputs
+    - RunnablePassthrough: simply return the input as output,
+    needed when we want to get the previous output also
+    - RunnableLambda: apply custom functions within AI pipelines
+    - RunnableBranch: a control flow comp, conditionally route input data to diff chains or runnables on custom logic
+    -LCEL (Langchain expression language): runnableSequence is used everywhere, so they decided to make chains like x1 | x2 | x3
