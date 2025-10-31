@@ -106,3 +106,21 @@ Runnables: We need to know runnables to understand chains
     - RunnableLambda: apply custom functions within AI pipelines
     - RunnableBranch: a control flow comp, conditionally route input data to diff chains or runnables on custom logic
     -LCEL (Langchain expression language): runnableSequence is used everywhere, so they decided to make chains like x1 | x2 | x3
+
+RAG: combines info retrieval with language gen, where model retrieves relevant docs from a knowledge base, and uses them as context.
+
+    DocumentLoaders: used to load data from various sources into a standardized form, which can be used for chunking, embediing, retrieval and generation. loads doc as a list of docs
+    - Document(
+        page_conetent="...",
+        metadata={"source":"...", ...}
+    )
+    - There are many doc loaders, most used are: TextLoader, PyPDFLoader, WebBaseLoader, CSVLoader
+        -TextLoader: reads plain text in .txt files
+        -PyPDFLoader: load content from PDF files and convert each page into a document object. so if 20 pg doc, converts to 20 doc objects. Not great with scannedPDFs or complex layouts. doesnt work on scannedPDFs that well. There are many different types of PDF loaders
+        -DirectoryLoader - loads multiple docs from a directory
+        -WebPageLoader: extract and load text from webpages using BeautifulSoup to parse HTML and extract visible text. It struggles with JS heavy pages we can use SeleniumURLLoader for that. It loads only Static content (what's in the HTML structure)
+        -CSVLoader: load CSV files to Document objects
+
+    LazyLoad: loads on demand, but normal load does everything at once
+        - This returns a generator of Document objects, as oppose to a list of Document objects
+        - Used when there are huge number of files and u want to do stream processing, without using lots of memory
