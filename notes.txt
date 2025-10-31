@@ -124,3 +124,25 @@ RAG: combines info retrieval with language gen, where model retrieves relevant d
     LazyLoad: loads on demand, but normal load does everything at once
         - This returns a generator of Document objects, as oppose to a list of Document objects
         - Used when there are huge number of files and u want to do stream processing, without using lots of memory
+
+    TextSplitters: breaking large chunks of text into smaller manageable chunks that LLM can handle effectively.
+    - LLMs output quality increases as they have context length limits.
+    - Short chunks give more accurate vectors, search result point to focused info not noise and prevents hallucination and topic drift
+    - The types of TextSplitters are:
+        - LengthBased: decide the size of chunks(charachters, tokens), most simple, but it doesnt look for grammatical meaning, sematical meanings. ChunkOverlap tells howmany characters will the 2 chunks will have overlap of. This is used to maintain context so that text isnt cut in between
+        - TextStructureBased: This follows the text structure of the text, like paras have "\n \n", Line change has "\n", word has " ", and character is ""
+        - DocuemntStructureBased: if the text in a document is written in a different way than text, like markdown code, the structure is different as there is functions, loops, etc. So here we can use different splitters
+        - SemanticMeaningBased: if there are 2 differnet paras with completely different meanings, so we split with the help of this. they compare the similarity with the consecutive sentence and as soon as the meaning changes (similarity drops), they split it. The drop in similarity can be measured by different types in breakpoint_threshold_type (eg. std_dev). breakpoint_threshold_amount is the breaking point (eg. if the difference is 1 std dev then split it)
+    
+    Vector Stores: system desigened to store and retrieve data represented as numerical vectors.
+        - Ensures vectors and associated metadata are retained wether in mem or on disk
+        - helps in similarity search
+        - provides indexing for fast similarity searches on high dim vectors
+        - CRUD ops: create, read update, delete of vectors.
+    
+    VectorStores vs VectorDB:  
+        -VS is a lightweight lib focusing on storing and performing similarity search on vectors. But a VDB is a sytem designed to store and query vectors
+        - VDB offers database-like features like distributes, backup and restore, concurrency, ACID gurantees
+        - eg. VS: FAISS
+              VDB: milvrus, qdrant, weaviate, pinecone
+        ChromaDB: open source VDB, not a full-fledged VDB, lightweight, friendly for local dev.
