@@ -146,3 +146,16 @@ RAG: combines info retrieval with language gen, where model retrieves relevant d
         - eg. VS: FAISS
               VDB: milvrus, qdrant, weaviate, pinecone
         ChromaDB: open source VDB, not a full-fledged VDB, lightweight, friendly for local dev.
+
+    Retrievers: fetches a relevant doc from a data source in response to a user query. all retirevers in langchain are runnables
+    They are various types of retrievers:
+        DataSource type:
+            -Wikipideia: searches on Wikipideia, queries the wikipedia API, retirieves the most relevant articles, returns the Document objects
+            -VectorStore
+            -ArchiveRetriever: searches different research papers
+        based on search stratergy:
+            - Max Marginal Relevance: If the docs are fairly similar in context, like they may talk about the same topic, so using a normal retriever may not be able to find the exact document we want. So MMR is an info retrievel algo designed to reduce redundancy in the retrieved results while maintaing hig relevance to the query. THe first document is the most relevant one and the the 2nd is the most relevant and least similar to first, and so on. 
+            - Multiquery: the user's query may be ambiguous, send the query to an LLM, it generates k diverse queries, now these k queries are sent to retriever and the corresponding docs are retrieved, then merged and redundant docs removed, then send the top n results asked by the user. 
+            - Contextual Compression: improves the retireval quality by compressing docs after retrieval, keeping only the relevant content based on the user's query. All the retrieved docs and the user query are sent to the LLM and asked to trim the docs based on the user query
+
+    -VectorStore can do sim search with only 1 method, but using a VDB we can use retrievers of our choice
