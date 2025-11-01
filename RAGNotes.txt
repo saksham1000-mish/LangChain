@@ -1,0 +1,16 @@
+Retrieval Augmented Generation:
+WHY:
+    - LLM stores their knowledge in parametric form. LLM doesnt work in recent data, private data and hallucination problems.
+    - We can fine-tune a pre-trained model on a domain specific dataset, there are many techniques to train the LLM: Supervised: give labelled dataset (prompt and the desired output), unsupervised: give the dataset of the domai specific datasets.
+    - We need to fine-tune each time the dataset changes or expands,  this is computationally costly, techincal expertise required.
+    - In-context learning: core capability of LLM to solve a task purely by seeing examples in the prompt without updating its weights
+    - instread of just examples, we can inject the knowledge in the prompt, this is RAG. 
+
+How: 
+    RAG = Info Retrieval + Text Generation
+    - Indexing: Creating the external KB, so that it can be searched easily. Document Ingstion (Doc loaders) --> Text Chunking (Text splitters) --> Embedding (creating vectors) --> Storing vector + metadata in vectorDB. This VectorDB is the External KB
+    - Retrieval: Taking the relevant docs/chunks from the KB. Find the most relevant chunks, k most relevant chunks to ans the user query.
+    - Augmentation: Creating a prompt with query and context retrieved.
+    - Generation of text using LLM
+
+RAG can now used to ans on private data as we are giving it to the LLM. We can just update our KB so that that we can ans on the recent developnments. Hallucinations prob is also solved. Less complex and cheaper than fine-tuning LLMs
