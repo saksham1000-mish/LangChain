@@ -14,3 +14,22 @@ How:
     - Generation of text using LLM
 
 RAG can now used to ans on private data as we are giving it to the LLM. We can just update our KB so that that we can ans on the recent developnments. Hallucinations prob is also solved. Less complex and cheaper than fine-tuning LLMs
+
+Tools: Python function or API that is packaged in a way the LLM can understand it and call it when needed.
+Agent = LLM + Tools
+Langchain has:
+    - Built-in tools: frequently used tools, pre-built, requires minimal setup
+    - Custom Tools: specific to your usecase, call your own API, you want to encapsulate business logic, want LLM to interact with your databse, product or app
+        - @tool decorator 
+        - A structured tool is a special type where the input to the tookl follows a structured schema, using a Pydantic model
+        - BaseTool class: It is an abstract base class for all tools in LangChain. It defines the core structure and interface for any tool must follow. All other tool types (@tool, StructuredTool) are built on top of BaseTool
+    
+    -ToolKits: Collection of related tools that serve a common purpose, packaged together for convinience
+
+    Tool Binding: registering a tool with a LLM, so that LLM knows what tool are available, it knows what each tool does, whats the input format(via schema)
+    ToolCalling: process where an LLM decides that it needs to use a specific tool and generates a structured output with:
+        - name of the tool
+        - arguments to call it with
+    LLM wont run the tool, it will handled by dev or langchain
+
+    Tool Execution: where actually the Python function is run using using the input args that the LLM suggested during tool calling.
