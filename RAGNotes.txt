@@ -33,3 +33,30 @@ Langchain has:
     LLM wont run the tool, it will handled by dev or langchain
 
     Tool Execution: where actually the Python function is run using using the input args that the LLM suggested during tool calling.
+
+    AGENTS:
+        ReAct: It is a design pattern used in AI agents for Reasoning + Acting. It allows an LLM to interleave internal reasoning with external actions(tools) in a structured multi-step process.
+        It does Thought-->Action-->Observation in a loop until it gets a convinient ans.
+            - Useful for:
+                - Multi-step problems
+                - Tool-Augmented tasks
+                - Making the agent's reasoning trnsparent and auditable
+        
+        Agent and Agent Executor: AgentEX orchestrates the entire loop:
+            - sends input and previous messages to the agent
+            - gets the next action from agent
+            - executs the tool with provided input
+            - adds the tool's observation back in the history
+            - loops again with updated history until agent says Final Answer
+
+        agent = create_react_agent(
+            llm = llm,
+            tools = [search_tool],
+            prompt = prompt
+        )
+
+        agent_executor = AgentExecutor(
+            agent = agent,
+            tools = [search_tool],
+            verbose = True
+        )
